@@ -85,4 +85,6 @@ local.properties
 ### Maven ###
 target/
 
+**/build/**
+*.class
 /build/
