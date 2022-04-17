@@ -1,5 +1,7 @@
 package dcode.model.request;
 
+import dcode.exception.InvalidRequestPropertyException;
+import dcode.service.ProductService;
 import lombok.Builder;
 import lombok.Data;
 
@@ -15,4 +17,9 @@ public class ProductInfoRequest {
 
     @NotNull
     private int[] promotionIds;
+
+  public void isValidated() {
+    var violiations = ProductService.validator.validate(this);
+    if (violiations.size() > 0) throw new InvalidRequestPropertyException(violiations.toString());
+  }
 }
